@@ -67,16 +67,48 @@ body {
   color: white;
 }
 
-@media screen and (max-width: 500px) {
-  .header a {
-    float: none;
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 723px) {
+  .header {
+    flex-wrap: nowrap;
+  }
+
+  .menu-toggle {
     display: block;
-    text-align: left;
   }
 
   .header-right {
-    float: none;
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: black;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    z-index: 1000;
   }
+
+  .header-right.show {
+    display: flex;
+  }
+
+  .header-right a {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 0;
+    text-align: left;
+    border-radius: 0;
+  }
+
 }
 
 .hero-index {
@@ -480,7 +512,7 @@ button:hover {
   label {
     margin-bottom: 5px;
     font-weight: bold;
-     font-family: "Chewy", system-ui;
+    font-family: "Chewy", system-ui;
     color: var(--verde-pied-piper);
     font-size: 1.5rem;
     text-align: center;
