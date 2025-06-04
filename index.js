@@ -33,6 +33,39 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+    (function () {
+    const urlRickroll = "https://youtu.be/dQw4w9WgXcQ?si=aeIIbggH6U64dLbV";
+
+    const devtools = {
+      open: false,
+      orientation: null
+    };
+
+    const threshold = 160;
+
+    setInterval(function () {
+      const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+      const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+      const orientation = widthThreshold ? 'vertical' : 'horizontal';
+
+      if (
+        !(heightThreshold && widthThreshold) &&
+        (window.Firebug && window.Firebug.chrome && window.Firebug.chrome.isInitialized) ||
+        widthThreshold || heightThreshold
+      ) {
+        if (!devtools.open || devtools.orientation !== orientation) {
+          window.location.href = urlRickroll;
+        }
+
+        devtools.open = true;
+        devtools.orientation = orientation;
+      } else {
+        devtools.open = false;
+        devtools.orientation = null;
+      }
+    }, 500);
+  })();
+
   prevBtn.addEventListener('click', () => {
     currentSlide = (currentSlide - 1 + slides.length) % slides.length;
     showSlide(currentSlide);
